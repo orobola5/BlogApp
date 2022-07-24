@@ -10,4 +10,5 @@ public interface BlogServiceImpl {
     List<Blog>findAll();
     void delete(String id);
     Blog update(Blog blog);
+    Blog findById(String id);
 }

@@ -22,6 +22,16 @@ public class BlogController {
     public List<Blog> getAllBlogs(){
         return blogService.findAll();
     }
+    @GetMapping("/title/{title}")
+    public List<Blog> getBlogByTitle(@PathVariable String title){
+        return blogService.findByTitle(title);
+    }
+    @GetMapping("/id/{id}")
+    public Blog getBlogById(@PathVariable String id){
+        return blogService.findById(id);
+    }
+
+
     @PostMapping("/create")
     public Blog create(@RequestBody Blog blog){
         blog.setBlogId(UUID.randomUUID().toString());

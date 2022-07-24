@@ -2,11 +2,13 @@ package com.example.springcrudmongodb.service;
 
 import com.example.springcrudmongodb.Repository.BlogRepository;
 import com.example.springcrudmongodb.model.Blog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+@Slf4j
 public class BlogService implements BlogServiceImpl{
     @Autowired
     private BlogRepository blogRepository;
@@ -18,7 +20,10 @@ public class BlogService implements BlogServiceImpl{
 
     @Override
     public List<Blog> findByTitle(String title) {
-        return blogRepository.findByTitle(title);
+        log.info("###### FIND BY TITLE {}",title);
+        List<Blog>blogList=blogRepository.findByTitle(title);
+        log.info("###### FIND BY blogList {}",blogList);
+        return blogList;
     }
 
     @Override
@@ -35,5 +40,10 @@ public class BlogService implements BlogServiceImpl{
     @Override
     public Blog update(Blog blog) {
         return blogRepository.save(blog);
+    }
+
+    @Override
+    public Blog findById(String id) {
+        return blogRepository.findById(id).get();
     }
 }
